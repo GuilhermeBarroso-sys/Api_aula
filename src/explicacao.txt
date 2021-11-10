@@ -1,0 +1,45 @@
+MVC
+
+M - MODEL - (ENTITIES)
+C - CONTROLLER ()
+V - VIEW
+
+REQUISIÇÃO - (POST, GET, PUT, DELETE)
+enviar um post JSON (name, telephone, email)
+rota /clients
+
+==
+
+rota post(/clients) -> controller (ClientsController)
+Controller (pegar os dados ) e chama um Services (ClientServices)
+Services é que contém a regra negócio da aplicação, é ele
+que irá se comunicar com o banco de dados
+
+
+rota ----> controller ---> services (regra de negócio)
+
+index() { } - Listagem de usuários
+show() { }  -  Exibir um único usuário
+create() { } -  Cadastrar usuário
+update() { } - Alterar usuário
+delete() { }  - Remover usuário
+
+
+
+Exercício 2
+Criar as seguintes migrations
+Fornecedores (id, nome do fornecedor, email) - criar e listar
+Produtos (id, nome do produto, unidade de medida) - ok
+Pedido de compra (id, id do produto, id do fornecedor, quantidade, valor unitário, data compra)
+a) regra para o criar:
+1) Não pode fazer pedido de compra para produto e/ou fornecoedor que não esteja cadastrado
+2) Atualizar a tabela de saldo em estoque. Se o id do produto não existir gravar o id e
+a quantidade que está comprando. Se o id do produto existir somar a quantidade de compra
+com a quantidade existente na tabela de saldo em estoque
+b) Implementar os métodos criar, listar todos, deletar
+c) Regra para o deletar
+1) Ao deletar um pedido de compra, diminuir do saldo em estoque a quantidade deletada
+Saldo em Estoque (id, id do produto, quantidade )
+id: 1, id do produto: Notebook, quantidade: 1
+
+Entregar na 5a feira (11/11) até as 19:00h valendo 1.0 (ponto)
