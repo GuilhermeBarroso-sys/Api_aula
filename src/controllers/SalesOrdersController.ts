@@ -12,6 +12,7 @@ class SalesOrdersController {
       const salesOrders = await salesOrdersService.create({
         client_id, product_id, amount, saleDate
       })
+      
       return response
         .status(200)
         .json(salesOrders)
@@ -46,6 +47,32 @@ class SalesOrdersController {
       return response
         .status(400)
         .json({ mensagem: err.message })
+    }
+  }
+  async update(request: Request, response: Response) {
+    const {id} = request.params;
+    const {client_id, product_id, amount, saleDate } = request.body
+    const saleOrdersService = new SalesOrdersService();
+    try { 
+      const saleOrder = await saleOrdersService.update(id, {amount,client_id,product_id,saleDate} );
+      return response.status(200).json(saleOrder)
+    } catch(err) {
+      return response
+      .status(400)
+      .json({ mensagem: err.message })
+    }
+  }
+  async delete(request: Request, response: Response) {
+    //
+    const {id} = request.params;
+    const saleOrdersService = new SalesOrdersService();
+    try {
+      await saleOrdersService.delete(id);
+      return response.status(200).send()
+    } catch(err) {
+      return response
+      .status(400)
+      .json({ mensagem: err.message })
     }
   }
 }
